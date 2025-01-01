@@ -1,17 +1,35 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      keyframes: {
+        twinkle: {
+          '0%, 100%': { opacity: 0.2 },
+          '50%': { opacity: 0.8 }
+        },
+        floatUp: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-30px)' }
+        },
+        floatDown: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(30px)' }
+        },
+        sideFloat: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(15px)' }
+        }
       },
+      animation: {
+        twinkle: 'twinkle 3s infinite',
+        floatUp: 'floatUp 6s infinite',
+        floatDown: 'floatDown 6s infinite',
+        sideFloat: 'sideFloat 8s infinite'
+      }
     },
   },
   plugins: [],
