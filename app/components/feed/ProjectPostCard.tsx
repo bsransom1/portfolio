@@ -35,7 +35,9 @@ export default function ProjectPostCard({ project }: { project: Project }) {
             {titleMark.mode === "inline" ? (
               <span
                 className={`inline-flex gap-x-1.5 md:gap-x-2 ${
-                  project.slug === "leidos-genai" || project.slug === "lua" ? "items-center" : "items-baseline"
+                  project.slug === "leidos-genai" || project.slug === "lua" || project.slug === "founderssuite"
+                    ? "items-center"
+                    : "items-baseline"
                 } ${project.slug === "lua" ? "max-w-full flex-nowrap" : "flex-wrap"}`}
               >
                 <img
@@ -67,7 +69,7 @@ export default function ProjectPostCard({ project }: { project: Project }) {
                 src={markSrc}
                 alt={`${project.title} logo`}
                 className={`h-11 w-11 shrink-0 object-contain ${
-                  project.slug === "versology" ? "rounded-xl" : ""
+                  project.slug === "founderssuite" ? "rounded-xl" : ""
                 }`}
                 decoding="async"
               />

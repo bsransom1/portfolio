@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import type { Project } from "./projects";
 import LuaCaseStudy from "../components/caseStudies/LuaCaseStudy";
-import VersologyCaseStudy from "../components/caseStudies/VersologyCaseStudy";
+import FoundersSuiteCaseStudy from "../components/caseStudies/FoundersSuiteCaseStudy";
 import StepLadderCaseStudy from "../components/caseStudies/StepLadderCaseStudy";
 import LeidosCaseStudy from "../components/caseStudies/LeidosCaseStudy";
 
@@ -9,7 +9,7 @@ export type CaseStudyPageComponent = ComponentType<{ project: Project }>;
 
 const CUSTOM_CASE_STUDIES: Partial<Record<string, CaseStudyPageComponent>> = {
   lua: LuaCaseStudy,
-  versology: VersologyCaseStudy,
+  founderssuite: FoundersSuiteCaseStudy,
   stepladder: StepLadderCaseStudy,
   "leidos-genai": LeidosCaseStudy,
 };

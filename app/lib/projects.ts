@@ -64,6 +64,29 @@ export const projects: Project[] = [
   },
   {
     id: "3",
+    slug: "founderssuite",
+    title: "FoundersSuite",
+    type: "Web App / B2B",
+    description:
+      "A B2B discovery marketplace connecting early-stage founders with domain-matched end users for structured validation—AI matching, conversations, and investor-ready insight summaries.",
+    thumbnail: "/projects/logos/founderssuite.png",
+    tags: ["Web App", "B2B", "AI", "MedTech"],
+    overview:
+      "FoundersSuite replaces cold outreach and biased warm-network feedback with a two-sided platform: SVD-based matching on lived experience, pay-per-conversation pricing, and LangChain-powered summaries for pre-MVP founders—beachhead in MedTech B2B.",
+    process: [
+      "20 founder interviews + competitive landscape (BetaTesting, Applause, Testlio)",
+      "Problem/solution fit: Mom Test failure modes vs. structured discovery",
+      "Two-sided IA: founder dashboard, tester feed, community board",
+      "SVD matcher + LLM insight pipeline prototype",
+      "Beall Butterworth & Stella Zhang NVC submission build"
+    ],
+    gallery: [],
+    reflection:
+      "The product lives or dies on match quality—demographic panels are easy to copy; domain-tuned experience graphs and credible B2B supply are not.",
+    color: "#1d4ed8"
+  },
+  {
+    id: "4",
     slug: "lua",
     title: "Lua",
     type: "Mobile App",
@@ -84,28 +107,6 @@ export const projects: Project[] = [
     reflection:
       "The hardest design tension is gamification with integrity: mechanics must pull students through evidence-informed practice without trivializing clinical anxiety or substituting for professional care.",
     color: "#0ea5e9"
-  },
-  {
-    id: "4",
-    slug: "versology",
-    title: "Versology",
-    type: "Mobile App",
-    description: "A mobile reference for scripture study—terms, context, and related passages in one place.",
-    thumbnail: "/projects/logos/versology.png",
-    tags: ["Mobile App", "UI/UX", "Education"],
-    overview:
-      "Versology targets readers who have outgrown atomized devotional feeds but still study on their phones: a structured reference layer for terms, history, and related passages so inquiry does not collapse into random search tabs.",
-    process: [
-      "Problem framing: fragmented sources vs. cumulative Bible study",
-      "Information architecture for entries, linking, and mobile lookup",
-      "UI exploration for readable long-form and fast navigation",
-      "Full-stack implementation sprint (2 months)",
-      "Editorial and sourcing standards sketched for production"
-    ],
-    gallery: [],
-    reflection:
-      "Depth without clutter is the constraint: every screen has to earn its place in a study session where attention is scarce and trust is everything.",
-    color: "#171717"
   }
 ];
 

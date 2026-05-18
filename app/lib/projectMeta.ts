@@ -5,7 +5,7 @@ export const PROJECT_DEV_RANGES: Record<string, string> = {
   "leidos-genai": "January '26 – June '26",
   stepladder: "June '25 – December '26",
   lua: "September '24 – January '25",
-  versology: "June '25 – November '25",
+  founderssuite: "October '25 – March '26",
 };
 
 export function getProjectDevRange(slug: string): string {
@@ -16,7 +16,7 @@ export function getProjectDevRange(slug: string): string {
 export const PROJECT_MARK_SRC: Record<string, string> = {
   "leidos-genai": "/projects/logos/leidos.png",
   stepladder: "/projects/logos/stepladder.png",
-  versology: "/projects/logos/versology.png",
+  founderssuite: "/projects/logos/founderssuite.png",
   lua: "/projects/logos/lua-star.png",
 };
 
@@ -61,11 +61,17 @@ export function getProjectTitleMark(slug: string, title: string): ProjectTitleMa
       return { mode: "inline", src, rest: title };
     }
   }
+  if (slug === "founderssuite") {
+    const src = PROJECT_MARK_SRC.founderssuite;
+    if (src) {
+      return { mode: "inline", src, rest: title };
+    }
+  }
   return { mode: "text" };
 }
 
 export function projectUsesInlineTitleMark(slug: string): boolean {
-  return slug === "leidos-genai" || slug === "lua" || slug === "stepladder";
+  return slug === "leidos-genai" || slug === "lua" || slug === "stepladder" || slug === "founderssuite";
 }
 
 const HERO_TITLE_MARK_IMG_BASE =
@@ -85,6 +91,14 @@ const LEIDOS_CARD_TITLE_MARK_IMG =
 /** StepLadder card: icon-only mark — much smaller than wordmarks so it matches the h2 cap height. */
 const STEPLADDER_CARD_TITLE_MARK_IMG =
   "inline-block h-[1.2em] w-auto max-w-[2rem] shrink-0 object-contain object-left md:h-[1.14em] md:max-w-[2.125rem]";
+
+/** FoundersSuite card: wordmark beside title. */
+const FOUNDERSUITE_CARD_TITLE_MARK_IMG =
+  "inline-block h-[2.25em] w-auto max-w-[11rem] shrink-0 object-contain object-left md:h-[2.5em] md:max-w-[13rem]";
+
+/** FoundersSuite case study hero wordmark. */
+const FOUNDERSUITE_HERO_TITLE_MARK_IMG =
+  "inline-block h-[2.85em] w-auto max-w-[14rem] shrink-0 object-contain object-left md:h-[3.1em] md:max-w-[17rem] lg:h-[3.25em] lg:max-w-[20rem]";
 
 /** Lua card: star badge — fixed rem so imgs never blow up to intrinsic PNG size. */
 const LUA_CARD_TITLE_MARK_IMG =
@@ -110,6 +124,9 @@ export function projectHeroTitleMarkImgClass(slug: string): string {
   if (slug === "lua") {
     return LUA_HERO_TITLE_MARK_IMG;
   }
+  if (slug === "founderssuite") {
+    return `relative top-[0.04em] ${FOUNDERSUITE_HERO_TITLE_MARK_IMG} align-middle`;
+  }
   const nudge = "top-[0.04em]";
   return `relative ${nudge} ${HERO_TITLE_MARK_IMG_BASE}`;
 }
@@ -121,6 +138,9 @@ export function projectCardTitleMarkImgClass(slug: string): string {
   }
   if (slug === "stepladder") {
     return `relative top-[0.04em] ${STEPLADDER_CARD_TITLE_MARK_IMG}`;
+  }
+  if (slug === "founderssuite") {
+    return `relative top-[0.04em] ${FOUNDERSUITE_CARD_TITLE_MARK_IMG}`;
   }
   if (slug === "lua") {
     return LUA_CARD_TITLE_MARK_IMG;

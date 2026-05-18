@@ -9,7 +9,12 @@ export type ProjectFeedDemo =
 /** Homepage feed demo chrome + asset per project slug */
 export const PROJECT_FEED_DEMOS: Partial<Record<Project["slug"], ProjectFeedDemo>> = {
   lua: { kind: "iphone", videoSrc: "/lua-demo.mp4", phoneSize: "sm" },
-  versology: { kind: "iphone", videoSrc: "/versology-demo.mp4", phoneSize: "sm" },
+  founderssuite: {
+    kind: "browser",
+    videoSrc: "/fs-demo.mp4",
+    hostname: "founderssuite.app",
+    contentBg: "#ffffff",
+  },
   stepladder: {
     kind: "browser",
     videoSrc: "/stepladder-demo.mp4",

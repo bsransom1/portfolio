@@ -1,4 +1,11 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "out"
+  "outputDirectory": "out",
+  "redirects": [
+    {
+      "source": "/projects/versology",
+      "destination": "/projects/founderssuite",
+      "permanent": true
+    }
+  ]
 }
