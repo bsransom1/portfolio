@@ -1,0 +1,8 @@
+# Static export (`next build` → `out/`). Safe for Netlify Drop: drag the local `out`
+# folder after `npm run build`, or connect the Git repo for auto builds.
+#
+# Do NOT use @netlify/plugin-nextjs with output: "export" — publish is plain static HTML.
+
+[build]
+  command = "npm run build"
+  publish = "out"

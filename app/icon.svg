@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="2" fill="#0A66C2" />
+  <text
+    x="8"
+    y="22"
+    fill="#ffffff"
+    font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="16"
+    font-weight="900"
+    letter-spacing="-0.02em"
+  >
+    B
+  </text>
+  <text
+    x="22"
+    y="22"
+    fill="#ffffff"
+    font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="16"
+    font-weight="900"
+    letter-spacing="-0.02em"
+    transform="translate(22, 22) scale(-1, 1) translate(-22, -22)"
+  >
+    R
+  </text>
+</svg>

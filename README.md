@@ -1,36 +1,182 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Braden Ransom - UX Portfolio
 
-## Getting Started
+A modern, interactive UX portfolio built with Next.js 14, TailwindCSS, Shadcn/UI, and Framer Motion.
 
-First, run the development server:
+## 🚀 Features
 
+- **Interactive Card Deck**: Horizontal draggable project cards with smooth animations
+- **Responsive Design**: Optimized for all screen sizes
+- **Smooth Animations**: Powered by Framer Motion for delightful interactions
+- **Bottom Accordion Navigation**: Unique navigation experience
+- **Project Case Studies**: Detailed project pages with process and reflection
+- **Modern Tech Stack**: Built with the latest web technologies
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: TailwindCSS v4
+- **UI Components**: Shadcn/UI
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Language**: TypeScript
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## 🏗️ Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+portfolio/
+├── app/
+│   ├── components/
+│   │   ├── Navbar.tsx           # Top navigation bar
+│   │   ├── HeroIntro.tsx        # Hero section with intro text
+│   │   ├── CardDeck.tsx         # Horizontal draggable card deck
+│   │   ├── ProjectCard.tsx      # Individual project card
+│   │   ├── ProjectGrid.tsx      # Grid layout for projects
+│   │   ├── AccordionNav.tsx     # Bottom accordion navigation
+│   │   └── Footer.tsx           # Footer component
+│   ├── lib/
+│   │   ├── animations.ts        # Framer Motion animation variants
+│   │   └── projects.ts          # Project data and helpers
+│   ├── projects/[slug]/
+│   │   └── page.tsx             # Dynamic project pages
+│   ├── about/
+│   │   └── page.tsx             # About page
+│   ├── contact/
+│   │   └── page.tsx             # Contact page
+│   ├── resume/
+│   │   └── page.tsx             # Resume page
+│   ├── layout.tsx               # Root layout
+│   ├── page.tsx                 # Home page
+│   └── globals.css              # Global styles
+└── package.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding Projects
 
-## Deploy on Vercel
+Edit `app/lib/projects.ts` to add your own projects:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+{
+  id: "5",
+  slug: "your-project",
+  title: "Your Project",
+  type: "UI/UX",
+  description: "Brief description",
+  thumbnail: "/projects/your-project-thumb.jpg",
+  tags: ["Tag1", "Tag2"],
+  overview: "Detailed overview...",
+  process: ["Step 1", "Step 2"],
+  gallery: ["/projects/your-project-1.jpg"],
+  reflection: "What you learned...",
+  color: "#FF6F61"
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Updating Personal Information
+
+1. **About Page**: Edit `app/about/page.tsx`
+2. **Contact Links**: Edit `app/contact/page.tsx`
+3. **Resume**: Edit `app/resume/page.tsx`
+4. **Metadata**: Edit `app/layout.tsx`
+
+### Changing Colors
+
+The portfolio uses two accent colors: Coral and Cobalt. To change them, edit `app/globals.css`:
+
+```css
+:root {
+  --coral: oklch(0.71 0.18 32);    /* Change this */
+  --cobalt: oklch(0.5 0.25 250);   /* Change this */
+}
+```
+
+### Adding Images
+
+1. Place your images in the `public/projects/` directory
+2. Update the paths in `app/lib/projects.ts`
+3. Use Next.js Image component for optimization
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com)
+3. Vercel will automatically detect Next.js and deploy
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 📝 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## ✨ Key Features Explained
+
+### Interactive Card Deck
+
+The card deck supports:
+- **Drag to scroll**: Click and drag horizontally
+- **Keyboard navigation**: Use arrow keys to navigate
+- **Touch-friendly**: Smooth swipe on mobile devices
+
+### Animations
+
+All animations are optimized for 60fps and use Framer Motion variants for consistency:
+- Fade-ins and slide-ups on page load
+- Card hover effects with lift and shadow
+- Navbar shrink on scroll
+- Accordion expansion on hover
+
+### Responsive Design
+
+- Mobile-first approach
+- Breakpoints: sm (640px), md (768px), lg (1024px)
+- Touch-optimized interactions
+
+## 🎯 Design Philosophy
+
+This portfolio combines:
+- **Aurora's House aesthetic**: Card-based, playful layout
+- **Ayushwan Jhauri style**: Sleek navigation and bottom accordion
+- **Modern minimalism**: Clean typography, subtle animations
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Feel free to fork this project and customize it for your own portfolio!
+
+---
+
+**Built with ❤️ by Braden Ransom**

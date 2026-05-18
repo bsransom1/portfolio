@@ -1,0 +1,2 @@
+# Static drag-and-drop & Netlify: map default crawler path to app icon
+/favicon.ico /icon.svg 200
