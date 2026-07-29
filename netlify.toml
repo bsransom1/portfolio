@@ -1,8 +1,25 @@
-# Static export (`next build` → `out/`). Safe for Netlify Drop: drag the local `out`
-# folder after `npm run build`, or connect the Git repo for auto builds.
-#
-# Do NOT use @netlify/plugin-nextjs with output: "export" — publish is plain static HTML.
+# Static export (`next build` → `out/`).
+# Connect this repo in Netlify, or drag the local `out/` folder after `npm run build`.
+# Do NOT use @netlify/plugin-nextjs with `output: "export"` — publish is plain static HTML.
 
 [build]
   command = "npm run build"
   publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

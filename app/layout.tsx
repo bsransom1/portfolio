@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import SiteHeader from "./components/layout/SiteHeader";
+import { JetBrains_Mono } from "next/font/google";
+import DotGridBackground from "./components/layout/DotGridBackground";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,13 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} page-dot-grid flex min-h-dvh flex-col antialiased font-sans`}
-      >
-        <SiteHeader />
-        <div className="relative flex min-h-0 w-full flex-1 flex-col">
-          <div className="relative z-[1] min-h-0 flex-1">{children}</div>
+    <html lang="en" className={`dark ${jetbrainsMono.variable}`}>
+      <body className={`${jetbrainsMono.className} flex min-h-dvh flex-col bg-black antialiased`}>
+        <DotGridBackground />
+        <div className="relative z-[1] flex min-h-0 w-full flex-1 flex-col">
+          <div className="relative min-h-0 flex-1">{children}</div>
         </div>
       </body>
     </html>

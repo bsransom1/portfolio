@@ -313,84 +313,68 @@ const LEIDOS_STACK: StackItem[] = [
   },
 ];
 
-const LUA_STACK: StackItem[] = [
+const VAGALTONE_STACK: StackItem[] = [
   {
     id: "shape",
-    title: "Sprint shape",
-    label: "Product / UX stack",
-    detail: "Research-first: Figma + light React—prove flows before committing to native shipping.",
+    title: "Platform",
+    label: "Browser research portal",
+    detail: "Short music-guided breathing sessions with pre/post self-report as the study instrument.",
     Icon: Layers,
     caseStudyColumn: "overview",
   },
   {
-    id: "figma",
-    title: "Figma",
-    label: "Figma (UI, high-fidelity prototype)",
-    detail: "Hi-fi onboarding, breathing, check-ins; components for fast iteration from interviews.",
-    Icon: SiFigma,
+    id: "next",
+    title: "Next.js",
+    label: "Next.js + React",
+    detail: "App Router UI for landing, check-in, breath session, and reflection.",
+    Icon: SiNextdotjs,
     caseStudyColumn: "frontend",
   },
   {
     id: "react",
-    title: "React prototype",
-    label: "React (prototype / web reference)",
-    detail: "State spike for skips/history—not production mobile; informed later native choice.",
+    title: "React",
+    label: "React",
+    detail: "Interactive breathing visual and session state transitions.",
     Icon: SiReact,
+    caseStudyColumn: "frontend",
+  },
+  {
+    id: "tailwind",
+    title: "Tailwind",
+    label: "Tailwind CSS",
+    detail: "Clean, minimal session UI for a few-minute flow.",
+    Icon: SiTailwindcss,
     caseStudyColumn: "frontend",
   },
   {
     id: "ts",
     title: "TypeScript",
     label: "TypeScript",
-    detail: "Step enums and event shapes so test builds do not rot into string soup.",
+    detail: "Typed session and Likert response shapes.",
     Icon: SiTypescript,
     caseStudyColumn: "frontend",
   },
   {
-    id: "mobile",
-    title: "Mobile UX",
-    label: "Mobile app (guided health flow)",
-    detail: "One-handed, short sessions, large targets—motion kept low for sensitivity.",
-    Icon: Smartphone,
-    caseStudyColumn: "frontend",
-  },
-  {
-    id: "ios",
-    title: "iOS patterns",
-    label: "iOS-oriented patterns",
-    detail: "Sheets, safe-area, haptics framing so the concept reads as App Store–credible.",
-    Icon: SiApple,
-    caseStudyColumn: "frontend",
-  },
-  {
-    id: "research",
-    title: "Interviews",
-    label: "User interviews & synthesis",
-    detail: "Semi-structured sessions → affinity maps and concrete flow edits.",
-    Icon: Users,
-    caseStudyColumn: "backend",
-  },
-  {
-    id: "synthesis",
-    title: "Benchmarking",
-    label: "Research notes & benchmarking",
-    detail: "Comp scans: adopt proven calm-app patterns; avoid shame/streak dark patterns.",
-    Icon: ClipboardList,
-    caseStudyColumn: "backend",
-  },
-  {
-    id: "health",
-    title: "Domain",
-    label: "Anxiety & regulation domain",
-    detail: "Copy and pacing aligned to anxiety UX ethics—optional drills, obvious exits.",
+    id: "audio",
+    title: "Web Audio",
+    label: "Web Audio API",
+    detail: "Browser-generated tones synced to inhale/exhale pacing.",
     Icon: HeartPulse,
     caseStudyColumn: "backend",
   },
   {
-    id: "academic",
-    title: "Academic frame",
-    label: "Health informatics sprint / academic",
-    detail: "Rubric-driven scope: evidence, ethics, feasibility vs prototype depth in narrative.",
+    id: "supabase",
+    title: "Supabase",
+    label: "Supabase",
+    detail: "Anonymous pre/post questionnaire capture (~83 responses).",
+    Icon: SiSupabase,
+    caseStudyColumn: "backend",
+  },
+  {
+    id: "research",
+    title: "INF 172",
+    label: "Music & Health research",
+    detail: "Frisson / vagal-tone literature; claims framed as emotional regulation, not medical VNS.",
     Icon: GraduationCap,
     caseStudyColumn: "backend",
   },
@@ -400,7 +384,7 @@ const BY_SLUG: Partial<Record<string, StackItem[]>> = {
   stepladder: STEPLADDER_STACK,
   founderssuite: FOUNDERSUITE_STACK,
   "leidos-genai": LEIDOS_STACK,
-  lua: LUA_STACK,
+  vagaltone: VAGALTONE_STACK,
 };
 
 /** Homepage card footer: 4–6 highlighted tools (no chevrons, no full-stack tile). */
@@ -408,7 +392,7 @@ const HOMEPAGE_STRIP_IDS: Partial<Record<string, string[]>> = {
   stepladder: ["next", "react", "ts", "supabase", "postgres", "docker"],
   founderssuite: ["react", "ts", "tailwind", "postgres", "svd", "openai"],
   "leidos-genai": ["next", "react", "ts", "supabase", "openai", "postgres"],
-  lua: ["figma"],
+  vagaltone: ["next", "react", "tailwind", "supabase", "audio"],
 };
 
 export function getHomepageStackStripItems(slug: string): StackItem[] {
@@ -435,8 +419,8 @@ export function getCaseStudyStackTable(slug: string): CaseStudyStackTable | unde
 
   const overview = items.find((i) => i.caseStudyColumn === "overview");
 
-  const leftHeader = slug === "lua" ? "Design & prototype" : "Frontend";
-  const rightHeader = slug === "lua" ? "Research & validation" : "Backend";
+  const leftHeader = "Frontend";
+  const rightHeader = "Backend";
 
   return {
     overview,
@@ -454,30 +438,4 @@ export function getProjectStackItems(slug: string): StackItem[] | undefined {
 
 export function projectHasStackStrip(slug: string): boolean {
   return Boolean(BY_SLUG[slug]?.length);
-}
-
-/** Homepage: a few highlighted stack icons in the card footer (curated list per project). */
-export default function ProjectStackStrip({ slug }: { slug: string }) {
-  const items = getHomepageStackStripItems(slug);
-  if (!items.length) return null;
-
-  return (
-    <div
-      className="flex max-w-full flex-wrap items-center justify-end gap-3 sm:gap-3.5 md:max-w-none"
-      aria-label="Tech stack highlights"
-    >
-      {items.map((item) => {
-        const Icon = item.Icon;
-        return (
-          <span
-            key={item.id}
-            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-black transition-colors hover:bg-neutral-100"
-            title={item.label}
-          >
-            <Icon className="h-[1.125rem] w-[1.125rem]" aria-hidden />
-          </span>
-        );
-      })}
-    </div>
-  );
 }

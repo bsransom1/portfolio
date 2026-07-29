@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import LinkedInFeed from "./components/feed/LinkedInFeed";
-import PhotoAccordion from "./components/home/PhotoAccordion";
+import DeveloperHome from "./components/home/DeveloperHome";
 import Footer from "./components/layout/Footer";
 
 export default function Home() {
@@ -18,8 +17,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <LinkedInFeed />
-      <PhotoAccordion sectionClassName="pt-8 pb-16 md:pt-12 md:pb-20" />
+      <DeveloperHome />
       <Footer />
     </main>
   );

@@ -45,7 +45,7 @@ export const projects: Project[] = [
     type: "Clinical workflow",
     description:
       "A therapist-facing tool for assigning between-session homework and reviewing structured patient work before the next session.",
-    thumbnail: "/stepladder.png",
+    thumbnail: "/projects/logos/stepladder.png",
     tags: ["Web App", "Clinical UX", "Mental Health"],
     overview:
       "StepLadder assignments grounded in evidence-based modalities (CBT, DBT, ERP, ACT) live in a guided patient experience; therapists get structured data before the next session instead of PDFs and vague recall.",
@@ -87,27 +87,27 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    slug: "lua",
-    title: "Lua",
-    type: "Mobile App",
+    slug: "vagaltone",
+    title: "VagalTone",
+    type: "Web App / Health",
     description:
-      "A mobile app for college students to learn about anxiety and practice regulation in a guided, game-like flow.",
-    thumbnail: "/lua.png",
-    tags: ["Mobile App", "UI/UX", "Health"],
+      "Browser-based music-guided breathing sessions exploring emotional self-regulation through vagus nerve stimulation principles.",
+    thumbnail: "/172.mp4",
+    tags: ["Web App", "Health", "Music", "Research"],
     overview:
-      "Three-month health informatics sprint: twenty student interviews across five incumbent DAIs, synthesis on personability and personalization gaps, then a product concept that pairs structured progression with regulation tools.",
+      "INF 172 Music and Health: a Next.js platform that walks users through pre-session check-in, a three-minute breathing exercise with synced visual and Web Audio cues, and post-session reflection—~83 self-reported data points collected.",
     process: [
-      "Qualitative research: 20 interviews, 5 leading DAIs benchmarked",
-      "Synthesis on efficacy, personability, and engagement frictions",
-      "Experience principles: guided arc vs. content library",
-      "Low-fidelity flows and IA for education + practice",
-      "High-fidelity mobile prototype and demo for testing"
+      "Literature on vagal tone, frisson, and music cognition",
+      "Prototype: landing → Likert check-in → guided breath → reflection",
+      "Web Audio API tones + expanding/contracting visual guide",
+      "Anonymous pre/post capture via Supabase",
+      "Iterate claims toward emotional regulation (not medical VNS)",
     ],
     gallery: [],
     reflection:
-      "The hardest design tension is gamification with integrity: mechanics must pull students through evidence-informed practice without trivializing clinical anxiety or substituting for professional care.",
-    color: "#0ea5e9"
-  }
+      "Self-reported Likert data is useful but not HRV; the next leap is wearable biofeedback and personalized music that adapts to what actually triggers calm for each user.",
+    color: "#7c3aed",
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

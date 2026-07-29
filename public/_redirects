@@ -1,3 +1,6 @@
-# Static drag-and-drop & Netlify: map default crawler path to app icon
+# Static hosts / Netlify Drop
 /favicon.ico /icon.svg 200
+
+# Legacy project slugs
 /projects/versology /projects/founderssuite 301
+/projects/lua /projects/vagaltone 301

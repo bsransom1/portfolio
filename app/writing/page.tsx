@@ -14,7 +14,7 @@ export default function WritingPage() {
       <div className="pt-8 pb-8 px-6 max-w-7xl mx-auto md:pt-10">
         <Link 
           href="/#work" 
-          className="text-sm text-gray-500 hover:text-black transition-colors inline-flex items-center gap-2"
+          className="text-sm text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Work
@@ -35,7 +35,7 @@ export default function WritingPage() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="block group"
             >
-              <div className="bg-white rounded-xl p-4 border border-gray-200 flex items-center gap-4 hover:border-black hover:shadow-lg transition-all duration-300">
+              <div className="bg-white/[0.03] rounded-xl p-4 border border-white/10 flex items-center gap-4 hover:border-white/30 hover:bg-white/[0.06] transition-all duration-300">
                 {/* Thumbnail */}
                 <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden">
                   <Image
@@ -49,17 +49,17 @@ export default function WritingPage() {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg md:text-xl font-semibold text-black mb-1 group-hover:opacity-70 transition-opacity">
+                  <h3 className="text-lg md:text-xl font-semibold text-white mb-1 group-hover:opacity-70 transition-opacity">
                     {article.title}
                   </h3>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
+                  <p className="text-xs text-neutral-500 uppercase tracking-wide">
                     {article.category}
                   </p>
                 </div>
 
                 {/* External Link Icon */}
                 <div className="flex-shrink-0">
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-black transition-colors" />
+                  <ExternalLink className="w-4 h-4 text-neutral-500 group-hover:text-white transition-colors" />
                 </div>
               </div>
             </motion.a>

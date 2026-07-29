@@ -6,6 +6,11 @@
       "source": "/projects/versology",
       "destination": "/projects/founderssuite",
       "permanent": true
+    },
+    {
+      "source": "/projects/lua",
+      "destination": "/projects/vagaltone",
+      "permanent": true
     }
   ]
 }

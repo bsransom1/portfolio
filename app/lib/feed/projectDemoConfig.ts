@@ -1,30 +1,22 @@
 import type { Project } from "../projects";
 
-export type FeedDemoKind = "iphone" | "browser";
+export type ProjectFeedDemo = {
+  videoSrc: string;
+  mimeType?: string;
+};
 
-export type ProjectFeedDemo =
-  | { kind: "iphone"; videoSrc: string; phoneSize?: "md" | "sm" }
-  | { kind: "browser"; videoSrc: string; hostname: string; contentBg?: string };
-
-/** Homepage feed demo chrome + asset per project slug */
+/** Homepage + case study demo asset per project slug */
 export const PROJECT_FEED_DEMOS: Partial<Record<Project["slug"], ProjectFeedDemo>> = {
-  lua: { kind: "iphone", videoSrc: "/lua-demo.mp4", phoneSize: "sm" },
+  vagaltone: {
+    videoSrc: "/172.mp4",
+  },
   founderssuite: {
-    kind: "browser",
     videoSrc: "/fs-demo.mp4",
-    hostname: "founderssuite.app",
-    contentBg: "#ffffff",
   },
   stepladder: {
-    kind: "browser",
-    videoSrc: "/stepladder-demo.mp4",
-    hostname: "stepladder.dev",
-    contentBg: "#FDFBF6",
+    videoSrc: "/videos/stepladder.mp4",
   },
   "leidos-genai": {
-    kind: "browser",
     videoSrc: "/v1.mp4",
-    hostname: "workspace.leidos-genai.internal / BAA-RFP",
-    contentBg: "#0f172a",
   },
 };

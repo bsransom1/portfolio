@@ -17,21 +17,21 @@ export default function NotFound() {
         >
           <motion.h1
             variants={slideUp}
-            className="text-9xl font-bold text-black mb-4"
+            className="text-9xl font-bold text-white mb-4"
           >
             404
           </motion.h1>
           
           <motion.h2
             variants={slideUp}
-            className="text-3xl md:text-4xl font-semibold text-black mb-6"
+            className="text-3xl md:text-4xl font-semibold text-white mb-6"
           >
             Page Not Found
           </motion.h2>
           
           <motion.p
             variants={slideUp}
-            className="text-lg text-gray-600 mb-8"
+            className="text-lg text-neutral-400 mb-8"
           >
             Sorry, the page you're looking for doesn't exist or has been moved.
           </motion.p>
@@ -39,7 +39,7 @@ export default function NotFound() {
           <motion.div variants={slideUp}>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-coral transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-neutral-200 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Home

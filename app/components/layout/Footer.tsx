@@ -8,17 +8,12 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="bg-transparent px-6 pb-8 pt-20"
+      className="bg-transparent px-6 pb-10 pt-6"
     >
-      <div className="mx-auto flex max-w-7xl justify-center">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 }}
-          className="text-sm font-semibold text-black"
-        >
+      <div className="mx-auto max-w-[1040px]">
+        <p className="text-center text-sm text-neutral-500">
           © {new Date().getFullYear()} Braden Ransom
-        </motion.p>
+        </p>
       </div>
     </motion.footer>
   );
