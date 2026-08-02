@@ -45,13 +45,13 @@ export const PREVIOUSLY_HIGHLIGHTS: Highlight[] = [
         emblem: true,
         href: "https://www.perplexity.ai/comet",
       },
-      { kind: "text", value: "Campus Partner" },
+      { kind: "text", value: " Campus Partner" },
     ],
   },
   {
     id: "prev",
     segments: [
-      { kind: "text", value: "Software Engineer" },
+      { kind: "text", value: "Software Engineer " },
       {
         kind: "logo",
         src: "/logos/leidos-emblem.png",
@@ -61,7 +61,7 @@ export const PREVIOUSLY_HIGHLIGHTS: Highlight[] = [
         wide: true,
         href: "https://www.leidos.com/",
       },
-      { kind: "text", value: ", UX Researcher" },
+      { kind: "text", value: " · UX Researcher " },
       {
         kind: "logo",
         src: "/logos/shades-emblem.png",
@@ -75,7 +75,7 @@ export const PREVIOUSLY_HIGHLIGHTS: Highlight[] = [
   {
     id: "nvc",
     segments: [
-      { kind: "logo", src: "/profile/nvc.png", alt: "Stella Zhang New Venture Competition" },
+      { kind: "logo", src: "/profile/nvc.png", alt: "Stella Zhang New Venture Competition", href: "https://merage.uci.edu/research-faculty/centers/innovation-entrepreneurship/new-venture-competiton.html" },
       { kind: "text", value: "Stella Zhang NVC Finalist ($11k)" },
       {
         kind: "photo",

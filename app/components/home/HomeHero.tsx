@@ -38,10 +38,11 @@ const brandSocials = [
 
 export default function HomeHero() {
   return (
-    <section className="flex min-h-dvh w-full items-center justify-center px-6 py-16">
-      <div className="mx-auto w-fit max-w-full">
-        <div className="flex items-center gap-6 md:gap-8">
-          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 shadow-lg md:h-36 md:w-36">
+    <section className="flex min-h-dvh w-full items-center justify-center px-4 py-12 md:px-6 md:py-16">
+      {/* Shrink-wrap the column, then center it — keeps profile + highlights on one left rail */}
+      <div className="mx-auto w-fit max-w-full text-left">
+        <div className="flex items-center gap-4 md:gap-8">
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-lg md:h-36 md:w-36 md:rounded-3xl">
             <Image
               src="/projects/headshot.jpg"
               alt={NAME}
@@ -51,10 +52,12 @@ export default function HomeHero() {
               priority
             />
           </div>
-          <div className="min-w-0 text-left">
-            <h1 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">{NAME}</h1>
-            <p className="mt-2 text-base text-neutral-400 md:text-xl">{TITLE}</p>
-            <div className="mt-4 flex items-center gap-2.5">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-5xl">
+              {NAME}
+            </h1>
+            <p className="mt-1.5 text-sm text-neutral-400 md:mt-2 md:text-xl">{TITLE}</p>
+            <div className="mt-3 flex items-center gap-2 md:mt-4 md:gap-2.5">
               {brandSocials.map(({ href, label, iconSrc }) => (
                 <a
                   key={label}
@@ -62,7 +65,7 @@ export default function HomeHero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-white/10 transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:opacity-90 md:h-11 md:w-11"
+                  className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-white/10 transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:opacity-90 md:h-11 md:w-11"
                 >
                   <img src={iconSrc} alt="" className="h-full w-full object-cover" decoding="async" />
                 </a>
@@ -72,9 +75,9 @@ export default function HomeHero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Résumé"
-                className="inline-flex h-10 w-10 items-center justify-center text-neutral-200 transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-white md:h-11 md:w-11"
+                className="inline-flex h-9 w-9 items-center justify-center text-neutral-200 transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-white md:h-11 md:w-11"
               >
-                <ResumeIcon className="h-10 w-10 md:h-11 md:w-11" />
+                <ResumeIcon className="h-9 w-9 md:h-11 md:w-11" />
               </a>
             </div>
           </div>

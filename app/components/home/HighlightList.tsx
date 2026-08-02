@@ -19,13 +19,13 @@ function SegmentSpan({
   onPhotoClick?: (gallery: string[], startIndex: number) => void;
 }) {
   if (seg.kind === "text") {
-    return <span>{seg.value}</span>;
+    return <span className="align-middle">{seg.value}</span>;
   }
 
   if (seg.kind === "photo") {
     const gallery = seg.gallery?.length ? seg.gallery : [seg.src];
     return (
-      <span className="ml-1 inline-flex items-center -space-x-2">
+      <span className="ml-1 inline-flex items-center -space-x-1.5 align-middle md:-space-x-2">
         {gallery.map((src, i) => (
           <button
             key={src}
@@ -33,13 +33,13 @@ function SegmentSpan({
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              onPhotoClick?.([src], 0);
+              onPhotoClick?.(gallery, i);
             }}
             style={{ zIndex: gallery.length - i }}
-            className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-white/20 shadow-sm transition-transform hover:z-20 hover:scale-110 hover:border-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 md:h-10 md:w-10"
+            className="relative h-7 w-7 shrink-0 overflow-hidden rounded-md border border-white/20 shadow-sm transition-transform hover:z-20 hover:scale-110 hover:border-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 md:h-9 md:w-9 md:rounded-lg"
             aria-label={`View ${seg.alt} photo ${i + 1}`}
           >
-            <Image src={src} alt={`${seg.alt} ${i + 1}`} fill className="object-cover" sizes="40px" />
+            <Image src={src} alt={`${seg.alt} ${i + 1}`} fill className="object-cover" sizes="36px" />
           </button>
         ))}
       </span>
@@ -48,18 +48,25 @@ function SegmentSpan({
 
   const sizeClass = seg.emblem
     ? seg.wide
-      ? "h-[0.9em] w-auto object-contain"
-      : "h-[1.15em] w-[1.15em] rounded-md object-cover"
-    : "h-[1.35em] w-auto object-contain";
+      ? "h-[0.85em] w-auto max-h-5 object-contain md:h-[0.9em] md:max-h-none"
+      : "h-[1.05em] w-[1.05em] rounded-md object-cover md:h-[1.15em] md:w-[1.15em]"
+    : // Standalone marks (e.g. NVC) — natural aspect, lightly rounded square corners
+      "h-5 w-auto max-h-5 rounded-[2px] object-contain object-center md:h-6 md:max-h-6";
 
   const img = (
-    <span className="inline-flex shrink-0 overflow-hidden rounded-md">
+    <span
+      className={
+        seg.emblem
+          ? "inline-flex shrink-0 overflow-hidden rounded-md align-middle"
+          : "mr-1 inline-flex shrink-0 overflow-hidden rounded-[2px] align-middle md:mr-1.5"
+      }
+    >
       <img src={seg.src} alt={seg.alt} className={sizeClass} decoding="async" />
     </span>
   );
 
   const mark = (
-    <span className="inline-flex items-center gap-1.5">
+    <span className="inline-flex items-center gap-1 align-middle md:gap-1.5">
       {img}
       {seg.label ? (
         <span className="font-semibold text-white">{seg.label}</span>
@@ -73,7 +80,7 @@ function SegmentSpan({
         href={seg.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:opacity-90"
+        className="inline-flex items-center align-middle transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:opacity-90"
         aria-label={seg.alt}
         onClick={(e) => e.stopPropagation()}
       >
@@ -85,6 +92,32 @@ function SegmentSpan({
   return mark;
 }
 
+/** Keep role+emblem and logo+label clusters on one line; photos can wrap. */
+function groupSegments(segments: HighlightSegment[]): HighlightSegment[][] {
+  const groups: HighlightSegment[][] = [];
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    const next = segments[i + 1];
+    if (
+      seg.kind === "text" &&
+      next?.kind === "logo" &&
+      next.emblem
+    ) {
+      groups.push([seg, next]);
+      i++;
+      continue;
+    }
+    // Logo (with or without emblem) + following award/role text stay together
+    if (seg.kind === "logo" && next?.kind === "text") {
+      groups.push([seg, next]);
+      i++;
+      continue;
+    }
+    groups.push([seg]);
+  }
+  return groups;
+}
+
 function HighlightRow({
   item,
   onPhotoClick,
@@ -92,13 +125,29 @@ function HighlightRow({
   item: Highlight;
   onPhotoClick: (gallery: string[], startIndex: number) => void;
 }) {
+  const groups = groupSegments(item.segments);
+
   return (
-    <li className="flex items-center gap-3 text-base text-neutral-300 md:text-lg">
-      <CornerDownRight className="h-4 w-4 shrink-0 text-neutral-600 md:h-5 md:w-5" aria-hidden />
-      <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1.5">
-        {item.segments.map((seg, i) => (
-          <SegmentSpan key={i} seg={seg} onPhotoClick={onPhotoClick} />
-        ))}
+    <li className="flex items-start gap-2 text-sm leading-relaxed text-neutral-300 md:items-center md:gap-3 md:text-lg">
+      <CornerDownRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-neutral-600 md:mt-0 md:h-5 md:w-5" aria-hidden />
+      <span className="min-w-0 text-pretty">
+        {groups.map((group, gi) => {
+          const isTightCluster =
+            group.length > 1 ||
+            (group[0]?.kind === "logo" && group[0].emblem);
+          // Keep logo/role clusters on one line; photos remain free to wrap.
+          const clusterClass = isTightCluster
+            ? "mr-1.5 inline-flex max-w-full items-center gap-1 whitespace-nowrap md:mr-2 md:gap-1.5"
+            : "mr-1 inline md:mr-1.5";
+
+          return (
+            <span key={gi} className={clusterClass}>
+              {group.map((seg, i) => (
+                <SegmentSpan key={i} seg={seg} onPhotoClick={onPhotoClick} />
+              ))}
+            </span>
+          );
+        })}
       </span>
     </li>
   );
@@ -130,10 +179,12 @@ export default function HighlightList() {
 
   return (
     <>
-      <div className="mt-12 max-w-full space-y-8 text-left">
-          <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xl text-neutral-300 md:gap-x-5 md:text-2xl">
+      <div className="mt-12 w-full space-y-8 text-left">
+          <p className="text-sm leading-relaxed text-neutral-300 md:text-2xl">
             {EDUCATION_HEADER.map((seg, i) => (
-              <SegmentSpan key={i} seg={seg} />
+              <span key={i} className="mr-1.5 inline-flex items-center gap-1 align-middle md:mr-2.5 md:gap-1.5">
+                <SegmentSpan seg={seg} />
+              </span>
             ))}
           </p>
 

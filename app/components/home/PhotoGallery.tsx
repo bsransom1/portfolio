@@ -3,9 +3,9 @@
 import { motion, useAnimationFrame, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
-/** Existing personal photos — scrolls left → right. */
+/** Personal photos — scrolls left → right. */
 const PHOTOS_LTR = [
   "/photos/photo1.jpeg",
   "/photos/photo9.png",
@@ -23,7 +23,7 @@ const PHOTOS_LTR = [
   "/photos/photo8.jpeg",
 ];
 
-/** New travel set — scrolls right → left. */
+/** Travel / nature set — scrolls right → left. */
 const PHOTOS_RTL = [
   "/photos/travel/photo9.png",
   "/photos/travel/photo10.png",
@@ -48,7 +48,7 @@ function MarqueeRow({
 }: {
   photos: string[];
   direction: "ltr" | "rtl";
-  onSelect: (src: string) => void;
+  onSelect: (photos: string[], index: number) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +58,6 @@ function MarqueeRow({
 
     const oneSetWidth = CARD_STEP * photos.length;
     const progress = (t * SPEED) % oneSetWidth;
-    // ltr: content drifts right (existing row). rtl: content drifts left.
     const x = direction === "ltr" ? -oneSetWidth + progress : -progress;
 
     el.style.transform = `translateX(${x}px)`;
@@ -69,58 +68,110 @@ function MarqueeRow({
   return (
     <div className="relative overflow-hidden bg-transparent">
       <div ref={trackRef} className="flex items-center py-3 will-change-transform">
-        {multiplied.map((src, i) => (
-          <motion.div
-            key={`${src}-${i}`}
-            whileHover={{ y: -4 }}
-            onClick={() => onSelect(src)}
-            className="relative mr-4 h-[280px] w-[200px] shrink-0 cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
-          >
-            <Image
-              src={src}
-              alt={`Photo ${(i % photos.length) + 1}`}
-              fill
-              className="object-cover"
-              sizes="200px"
-            />
-          </motion.div>
-        ))}
+        {multiplied.map((src, i) => {
+          const photoIndex = i % photos.length;
+          return (
+            <motion.div
+              key={`${src}-${i}`}
+              whileHover={{ y: -4 }}
+              onClick={() => onSelect(photos, photoIndex)}
+              className="relative mr-4 h-[280px] w-[200px] shrink-0 cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+            >
+              <Image
+                src={src}
+                alt={`Photo ${photoIndex + 1}`}
+                fill
+                className="object-cover"
+                sizes="200px"
+              />
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 export default function PhotoGallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [gallery, setGallery] = useState<string[] | null>(null);
+  const [index, setIndex] = useState(0);
+
+  const openGallery = (photos: string[], startIndex: number) => {
+    setGallery(photos);
+    setIndex(startIndex);
+  };
+
+  const close = () => setGallery(null);
+
+  const prev = () => {
+    if (!gallery) return;
+    setIndex((i) => (i <= 0 ? gallery.length - 1 : i - 1));
+  };
+
+  const next = () => {
+    if (!gallery) return;
+    setIndex((i) => (i + 1 >= gallery.length ? 0 : i + 1));
+  };
+
+  const current = gallery?.[index] ?? null;
+  const multi = (gallery?.length ?? 0) > 1;
 
   return (
     <>
       <section className="pt-24 pb-2 md:pt-32 md:pb-3" aria-label="Photo gallery">
         <div className="space-y-2">
-          <MarqueeRow photos={PHOTOS_LTR} direction="ltr" onSelect={setSelectedPhoto} />
-          <MarqueeRow photos={PHOTOS_RTL} direction="rtl" onSelect={setSelectedPhoto} />
+          <MarqueeRow photos={PHOTOS_LTR} direction="ltr" onSelect={openGallery} />
+          <MarqueeRow photos={PHOTOS_RTL} direction="rtl" onSelect={openGallery} />
         </div>
       </section>
 
       <AnimatePresence>
-        {selectedPhoto && (
+        {current && gallery && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedPhoto(null)}
+            onClick={close}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 md:p-8"
           >
             <button
               type="button"
-              onClick={() => setSelectedPhoto(null)}
+              onClick={close}
               className="absolute right-6 top-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
               aria-label="Close"
             >
               <X className="h-6 w-6" />
             </button>
 
+            {multi ? (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prev();
+                  }}
+                  className="absolute left-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:left-8"
+                  aria-label="Previous photo"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    next();
+                  }}
+                  className="absolute right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:right-16"
+                  aria-label="Next photo"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </>
+            ) : null}
+
             <motion.div
+              key={current}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -129,7 +180,7 @@ export default function PhotoGallery() {
               className="relative h-[570px] w-[400px] max-w-full overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-2xl"
             >
               <Image
-                src={selectedPhoto}
+                src={current}
                 alt="Enlarged photo"
                 fill
                 className="object-cover"
@@ -137,6 +188,12 @@ export default function PhotoGallery() {
                 priority
               />
             </motion.div>
+
+            {multi ? (
+              <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-neutral-400">
+                {index + 1} / {gallery.length}
+              </p>
+            ) : null}
           </motion.div>
         )}
       </AnimatePresence>
