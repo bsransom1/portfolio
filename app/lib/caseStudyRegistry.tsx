@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { Project } from "./projects";
-import VagalToneCaseStudy from "../components/caseStudies/VagalToneCaseStudy";
+import SwearchCaseStudy from "../components/caseStudies/SwearchCaseStudy";
 import FoundersSuiteCaseStudy from "../components/caseStudies/FoundersSuiteCaseStudy";
 import StepLadderCaseStudy from "../components/caseStudies/StepLadderCaseStudy";
 import LeidosCaseStudy from "../components/caseStudies/LeidosCaseStudy";
@@ -8,7 +8,7 @@ import LeidosCaseStudy from "../components/caseStudies/LeidosCaseStudy";
 export type CaseStudyPageComponent = ComponentType<{ project: Project }>;
 
 const CUSTOM_CASE_STUDIES: Partial<Record<string, CaseStudyPageComponent>> = {
-  vagaltone: VagalToneCaseStudy,
+  swearch: SwearchCaseStudy,
   founderssuite: FoundersSuiteCaseStudy,
   stepladder: StepLadderCaseStudy,
   "leidos-genai": LeidosCaseStudy,

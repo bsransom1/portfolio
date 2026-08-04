@@ -7,8 +7,8 @@ export type ProjectFeedDemo = {
 
 /** Homepage + case study demo asset per project slug */
 export const PROJECT_FEED_DEMOS: Partial<Record<Project["slug"], ProjectFeedDemo>> = {
-  vagaltone: {
-    videoSrc: "/172.mp4",
+  swearch: {
+    videoSrc: "/videos/swearch.mp4",
   },
   founderssuite: {
     videoSrc: "/fs-demo.mp4",

@@ -3,4 +3,5 @@
 
 # Legacy project slugs
 /projects/versology /projects/founderssuite 301
-/projects/lua /projects/vagaltone 301
+/projects/lua /projects/swearch 301
+/projects/vagaltone /projects/swearch 301

@@ -25,10 +25,11 @@ export const PROJECT_CARD_DISPLAY: Record<string, ProjectCardDisplay> = {
     tagline: "B2B discovery marketplace matching founders with domain-matched testers.",
     logoSrc: "/projects/logos/founderssuite.png",
   },
-  vagaltone: {
-    displayName: "VagalTone",
-    roleLabel: "INF 172",
-    tagline: "Music-guided breathing sessions for accessible emotional self-regulation.",
+  swearch: {
+    displayName: "Swearch",
+    roleLabel: "Founder",
+    tagline: "Highlight papers in Chrome, structure notes for your project, export to Google Docs.",
+    logoSrc: "/projects/logos/swearch.png",
   },
 };
 

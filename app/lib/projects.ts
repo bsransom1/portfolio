@@ -87,26 +87,27 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    slug: "vagaltone",
-    title: "VagalTone",
-    type: "Web App / Health",
+    slug: "swearch",
+    title: "Swearch",
+    type: "Chrome Extension / Full-stack",
     description:
-      "Browser-based music-guided breathing sessions exploring emotional self-regulation through vagus nerve stimulation principles.",
-    thumbnail: "/172.mp4",
-    tags: ["Web App", "Health", "Music", "Research"],
+      "Research condensation: highlight academic papers in Chrome, get project-scoped AI analysis, and append structured notes to a linked Google Doc.",
+    thumbnail: "/projects/logos/swearch.png",
+    tags: ["Chrome Extension", "MV3", "Next.js", "Supabase", "Anthropic", "Google Docs"],
     overview:
-      "INF 172 Music and Health: a Next.js platform that walks users through pre-session check-in, a three-minute breathing exercise with synced visual and Web Audio cues, and post-session reflection—~83 self-reported data points collected.",
+      "Solo-built research condensation product: Chrome MV3 extension + Next.js dashboard + Supabase Auth/Postgres/Edge Functions. Capture highlights on paper pages, structure them against an active writing project, and export into Google Docs—with privacy-conscious activation and Chrome Web Store packaging.",
     process: [
-      "Literature on vagal tone, frisson, and music cognition",
-      "Prototype: landing → Likert check-in → guided breath → reflection",
-      "Web Audio API tones + expanding/contracting visual guide",
-      "Anonymous pre/post capture via Supabase",
-      "Iterate claims toward emotional regulation (not medical VNS)",
+      "Frame the reading → project → Google Doc gap vs. explain-this-paper copilots",
+      "MV3 extension: context menu, Shadow DOM panel, Chat/Project/Session sidebar",
+      "Shared condensation schema + Docs append builders in packages/shared",
+      "Supabase RLS model: projects, highlights, paper recommendations, linked Docs",
+      "Dual Google OAuth (login vs Drive/Docs) + Edge Function-only Claude",
+      "Privacy policy, CWS packaging, reviewer fixtures for store submission",
     ],
     gallery: [],
     reflection:
-      "Self-reported Likert data is useful but not HRV; the next leap is wearable biofeedback and personalized music that adapts to what actually triggers calm for each user.",
-    color: "#7c3aed",
+      "Docs today are link + context cache + append-on-export—not a co-writing editor. The wedge is project-scoped condensation into the Doc researchers already use.",
+    color: "#6366f1",
   },
 ];
 

@@ -9,7 +9,12 @@
     },
     {
       "source": "/projects/lua",
-      "destination": "/projects/vagaltone",
+      "destination": "/projects/swearch",
+      "permanent": true
+    },
+    {
+      "source": "/projects/vagaltone",
+      "destination": "/projects/swearch",
       "permanent": true
     }
   ]
